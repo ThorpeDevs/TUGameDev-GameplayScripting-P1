@@ -1,16 +1,18 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerHandler : MonoBehaviour
 {
     public Rigidbody2D plrRigidBody;
     public float PlrSpeed;
     public float D_PlrJumpsAvaliable;
-    public float PlrNormalSpeed;
+    public float MaxJumpPower;
 
     private Vector2 InputPower;
     private float PlrJumpsAvaliable;
+    private float JumpPower;
 
     void Start()
     {
@@ -35,13 +37,23 @@ public class PlayerHandler : MonoBehaviour
         InputPower = Value.Get<Vector2>();
     }
 
-    public void OnJump()
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (PlrJumpsAvaliable > 0)
-        {
-            PlrJumpsAvaliable -= 1;
-            plrRigidBody.AddForce(InputPower * PlrSpeed);
-            Debug.Log(InputPower * PlrSpeed); // Log Inputpower
-        }
+        // Need To Add Hold Function So "Jump Power" Goes Up Whilst Space Is Held!
+
+        //if (context.started)
+        //{
+        //    Repeat
+        //}
+        //else if (context.canceled)
+        //{
+        //    if (PlrJumpsAvaliable > 0)
+        //    {
+        //        PlrJumpsAvaliable -= 1;
+        //        plrRigidBody.AddForce(InputPower * PlrSpeed);
+        //        Debug.Log(InputPower * PlrSpeed); // Log Inputpower
+        //    }
+        //}
+        
     }
 }
