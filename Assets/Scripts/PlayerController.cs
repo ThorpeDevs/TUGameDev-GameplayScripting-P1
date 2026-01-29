@@ -41,19 +41,19 @@ public class PlayerHandler : MonoBehaviour
     {
         // Need To Add Hold Function So "Jump Power" Goes Up Whilst Space Is Held!
 
-        //if (context.started)
-        //{
-        //    Repeat
-        //}
-        //else if (context.canceled)
-        //{
-        //    if (PlrJumpsAvaliable > 0)
-        //    {
-        //        PlrJumpsAvaliable -= 1;
-        //        plrRigidBody.AddForce(InputPower * PlrSpeed);
-        //        Debug.Log(InputPower * PlrSpeed); // Log Inputpower
-        //    }
-        //}
+        if (context.started)
+        {
+           
+        }
+        else if (context.canceled)
+        {
+           if (PlrJumpsAvaliable > 0)
+           {
+               PlrJumpsAvaliable -= 1;
+               plrRigidBody.AddForce(InputPower * PlrSpeed);
+               Debug.Log(InputPower * PlrSpeed); // Log Inputpower
+           }
+        }
         
     }
 }
