@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTreangle
       objectReference: {fileID: 0}
+    - target: {fileID: 5240996558591767055, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
+      propertyPath: canShoot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
