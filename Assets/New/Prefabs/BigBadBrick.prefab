@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4c50c6755f3bc46b0d9825a66d171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  RockRigidBody: {fileID: 5651144622591306962}
