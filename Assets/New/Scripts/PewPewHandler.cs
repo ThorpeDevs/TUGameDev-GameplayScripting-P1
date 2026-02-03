@@ -23,9 +23,11 @@ public class PewPewHandler : MonoBehaviour
         if (!canShoot) // Resets Firing Timer
         {
             timer += Time.deltaTime;
-            if (timer > timeBetweenFiring ) {
+            if (timer > timeBetweenFiring)
+            {
                 canShoot = true;
                 timer = 0;
+            }
         }
 
         if (Input.GetMouseButton(0) && canShoot) // Instances Shooting if can fire
@@ -33,5 +35,6 @@ public class PewPewHandler : MonoBehaviour
             canShoot = false;
             Instantiate(Bullet, bulletTrans.position, Quaternion.identity);
         }
+
     }
 }
