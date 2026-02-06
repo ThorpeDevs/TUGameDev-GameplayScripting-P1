@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class AAAAAAAAAAAAA : MonoBehaviour
 {
+    public GameHandler gameHandler;
     public Rigidbody2D RockRigidBody;
     private Scene CurrentScene; // Holds The Current Scene
 	public int AdditionalSpeed = 0; // Additional Speed Added To The Rock

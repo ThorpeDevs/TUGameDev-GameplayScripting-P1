@@ -15,7 +15,6 @@ public class GameHandler : MonoBehaviour
     {
         // Returns function if no rock count
         if (RockCount > 0) return;
-        RockCount++;
         
         // Increases the Difficulty and Spawn Level
         level ++;
@@ -48,7 +47,7 @@ public class GameHandler : MonoBehaviour
         
         // Create a rock!
         Vector2 worldSpawnPosition = Camera.main.ViewportToWorldPoint(viewportSpawnPosition);
-        Instantiate(Rock, worldSpawnPosition, Quaternion.identity);
-        RockCount++;
+        AAAAAAAAAAAAA newRock = Instantiate(Rock, worldSpawnPosition, Quaternion.identity);
+        newRock.gameHandler = this;
     }
 }

@@ -202,7 +202,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1001 &1421259044
+--- !u!1001 &1080672936
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -312,11 +312,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1131062957761436825, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.26883
+      value: 0.38921
       objectReference: {fileID: 0}
     - target: {fileID: 1131062957761436825, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.56084
+      value: 0.78396
       objectReference: {fileID: 0}
     - target: {fileID: 1131062957761436825, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
       propertyPath: m_LocalPosition.z
@@ -354,37 +354,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTreangle
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5240996558591767055, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 933552102179665608, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2223508506683329251, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 2131031594}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
---- !u!1 &2131031586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2223508506683329251, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
-  m_PrefabInstance: {fileID: 1421259044}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2131031594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131031586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a7a07d6634bf640bd69df87ed8a4c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Wrap
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 926455697}
-  - {fileID: 1421259044}
   - {fileID: 910561709}
+  - {fileID: 1080672936}
