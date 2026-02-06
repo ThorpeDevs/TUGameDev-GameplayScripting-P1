@@ -24,7 +24,7 @@ public class Wrap : MonoBehaviour
          moveAdjustment.y -= 1;
       }
       
-      // Convert back into world coords
+      // Convert back into world coords using math!
       transform.position = Camera.main.ViewportToWorldPoint(viewportPosition + moveAdjustment);
    }
 }
