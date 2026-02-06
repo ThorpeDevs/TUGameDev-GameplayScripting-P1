@@ -1,15 +1,32 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] public AAAAAAAAAAAAA Rock;
+    [SerializeField] public TextMeshProUGUI HighScoreGO;
     
     public int RockCount = 0;
+    private int _highscore = -1;
+    public int HighScore
+    {
+        get => _highscore;
+        set
+        {
+            _highscore = value;
+            HighScoreGO.text = $"{_highscore}";
+        }
+    }
 
-    private int level = 0;
+    public int level { get; private set; } = 0;
 
+    private void Start()
+    {
+        HighScore = 0;
+    }
+    
     // Update is called once per frame
     private void Update()
     {

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -111,8 +111,15 @@ MonoBehaviour:
   plrMaxVelocity: 10
   plrRotationSpeed: 360
   bulletSpeed: 8
+  dashCooldown: 10
+  dashDBCooldown: 2
+  dashRegenSpeed: 1
+  Dashes: 1
+  MaxDashes: 3
   bulletSpawn: {fileID: 31390205724854736}
   bulletPrefab: {fileID: 7853439251570312036, guid: 6b3d11c6181c131408ce7cd5695970cd, type: 3}
+  DestructionParticles: {fileID: 8313701884593886442, guid: 8c3975646ccdb534893f14f7c4818170, type: 3}
+  plrHealth: 100
 --- !u!114 &5686594304269142155
 MonoBehaviour:
   m_ObjectHideFlags: 0

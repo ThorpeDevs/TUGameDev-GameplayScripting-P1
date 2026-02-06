@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 4090541859595972769}
   - component: {fileID: 7244961904437358945}
   - component: {fileID: 7624801250231146933}
+  - component: {fileID: 9212922411950373648}
   - component: {fileID: 7853439251570312036}
   - component: {fileID: 4191558090808993761}
   m_Layer: 0
   m_Name: Boolet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +106,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e28181ef708f024aa9265a25c23cf9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boolet
+  bulletLifetime: 1
+--- !u!114 &9212922411950373648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296690613714415631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a7a07d6634bf640bd69df87ed8a4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Wrap
 --- !u!50 &7853439251570312036
 Rigidbody2D:
   serializedVersion: 5

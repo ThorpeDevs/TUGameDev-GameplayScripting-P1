@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5651144622591306962}
   - component: {fileID: 6489877727023389077}
   - component: {fileID: 4830064980673707340}
+  - component: {fileID: 2103055227561594550}
   m_Layer: 0
   m_Name: BigBadBrick
   m_TagString: Untagged
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,6 +186,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4c50c6755f3bc46b0d9825a66d171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  DestructionParticles: {fileID: 8313701884593886442, guid: 8c3975646ccdb534893f14f7c4818170, type: 3}
   RockRigidBody: {fileID: 5651144622591306962}
   AdditionalSpeed: 1
   Size: 3
+  damage: 9999999
+  gameHandler: {fileID: 0}
+--- !u!114 &2103055227561594550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365951724045114743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a7a07d6634bf640bd69df87ed8a4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Wrap

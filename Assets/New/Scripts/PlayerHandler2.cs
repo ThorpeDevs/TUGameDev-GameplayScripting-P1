@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,33 +9,96 @@ public class PlayerHandler2 : MonoBehaviour
     [SerializeField] private float plrAcceleration = 10f;
     [SerializeField] private float plrMaxVelocity = 10f;
     [SerializeField] private float plrRotationSpeed = 180f;
+    [SerializeField] private float bulletCooldown = 0.1f;
     [SerializeField] public float bulletSpeed = 8f;
+    [SerializeField] public float dashCooldown = 10f;
+    [SerializeField] public float dashDBCooldown = 2f;
+    [SerializeField] public float dashRegenSpeed = 1f;
+    [SerializeField] public int Dashes = 1;
+    [SerializeField] public int MaxDashes = 3;
 
     [Header("Object References")]
     [SerializeField] private Transform bulletSpawn;
     [SerializeField] private Rigidbody2D bulletPrefab;
+    [SerializeField] private ParticleSystem DestructionParticles;
+   
     
-    private float plrHealth = 100f;
-    
+    public float plrHealth = 100f;
+
+    private float dashDB = 0f;
+    private float dashRegen = 0f;   
+ 
     private Rigidbody2D plrRigidBody;
-    private bool isAlive => plrHealth > 0;
+    public bool isAlive => plrHealth > 0;
     private int isAccelerating = 0;
+    private bool isDashCooldown => dashDB > 0;
+
+    private float shootDB = 0;
+
+    private bool CantDash
+    {
+        get
+        {
+            if (isDashCooldown) return true; // Returns If Dash Is On DB
+            return Dashes <= 0; // Returns if Has No Dashes
+        }
+    }
+
 
     private void Start() {
         // Get a reference to RigidBody2D
         plrRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update() {
-        if (isAlive) {
-            HandleShipAcceleration();
-            HandleShipRotationSpeed();
-            HandleShooting();
+    private void HandleDashDB()
+    {
+        switch (isDashCooldown)
+        {
+            case true: // If True
+                dashDB -= Time.deltaTime; // Removes Time.Deltatime (real time) from dash DB
+                // dashRegen = 0;
+                break; // Breaks Free
+            case false: // If False
+                if (Dashes < MaxDashes) RegenDashes(); // If Dashes are below the max it will use the RegenDashes Function
+                break; // Breaks Free
         }
     }
 
+    private void RegenDashes()
+    {
+        dashRegen += (dashRegenSpeed * Time.deltaTime);
+        if (dashRegen >= dashCooldown)
+        {
+            dashRegen = 0; // Sets Regen Value To 0 So Full Regen Time Takes Place
+            Dashes++; // Adds A Dash
+            Debug.Log("Dashes"); // Console Log amount of dashes
+        }
+    }
+
+    private void Dash()
+    {
+        Debug.Log("Dashes"); // Console Log amount of dashes
+        if (CantDash) return; // Returns if cannot Dash
+        
+        dashDB = dashDBCooldown; // Sets DB to The DB Time
+        Dashes--; // Removes A Dash
+        
+        // Adds Force To Player When Dashing
+        plrRigidBody.AddForce((isAccelerating == -1 ? -plrAcceleration : plrAcceleration) * transform.up, ForceMode2D.Impulse);
+    }
+
+    private void Update()
+    {
+        if (!isAlive) return; // If Dead Return!
+        
+        HandlePlrAcceleration(); // Accels
+        HandlePlrRotationSpeed(); // Rotats
+        HandleShooting(); // Pew Pews
+        HandleDashDB(); // Dash DB
+    }
+
     private void FixedUpdate() {
-        if (isAlive && isAccelerating != 0)
+        if (isAlive && isAccelerating != 0) // If Alive And Accelorating
         {
             //Increase velocity
             plrRigidBody.AddForce((isAccelerating == 1 ? plrAcceleration : -plrAcceleration) * transform.up);
@@ -42,11 +106,12 @@ public class PlayerHandler2 : MonoBehaviour
         }
     }
 
-    private void HandleShipAcceleration(){
-        isAccelerating = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+    private void HandlePlrAcceleration(){
+        isAccelerating = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0; // If Pressing W Direction = 1 Else If Holding S Direction = -1
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) Dash();
     }
 
-    private void HandleShipRotationSpeed() {
+    private void HandlePlrRotationSpeed() {
         if (Input.GetKey(KeyCode.A))
         {
             plrRigidBody.AddTorque(plrRotationSpeed * Time.deltaTime);
@@ -61,7 +126,7 @@ public class PlayerHandler2 : MonoBehaviour
     private void HandleShooting()
     {
         //Handles Shooting Input
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Rigidbody2D bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
             
