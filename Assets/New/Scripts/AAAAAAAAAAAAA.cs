@@ -10,10 +10,14 @@ public class AAAAAAAAAAAAA : MonoBehaviour
 	public int Size = 3; // Size of the Rock
     public float damage = 2.5f; // was 2.5f
 
+    private SpriteRenderer SprRen;
+
     public GameHandler gameHandler;
 
     private void Start() // NEED TO USE THIS https://www.youtube.com/watch?v=wzQ9Xn406wc
     {
+        SprRen = GetComponent<SpriteRenderer>();
+
         // Scale
 		transform.localScale = 0.5f * Size * Vector3.one; // Scales the rock based on the size variable
         
@@ -43,7 +47,8 @@ public class AAAAAAAAAAAAA : MonoBehaviour
         else gameHandler.HighScore -= 500 * Size; // Removes Highscore If Hit
         
         Destroy(gameObject); // Destroys This Game Object
-        Instantiate(DestructionParticles, transform.position, Quaternion.identity);
+        ParticleSystem particle = Instantiate(DestructionParticles, transform.position, Quaternion.identity);
+        particle.startColor = SprRen.color;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -52,7 +57,7 @@ public class AAAAAAAAAAAAA : MonoBehaviour
         {
             PlayerHandler2 player = other.GetComponent<PlayerHandler2>();
             Debug.Log(damage);
-            player.plrHealth -= damage;
+            player.TakeDamage(damage);
             SplitRock(false);
             if (!player.isAlive)
             {

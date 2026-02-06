@@ -21,8 +21,9 @@ public class PlayerHandler2 : MonoBehaviour
     [SerializeField] private Transform bulletSpawn;
     [SerializeField] private Rigidbody2D bulletPrefab;
     [SerializeField] private ParticleSystem DestructionParticles;
-   
-    
+    [SerializeField] private ParticleSystem MovementParticle;
+
+
     public float plrHealth = 100f;
 
     private float dashDB = 0f;
@@ -30,6 +31,7 @@ public class PlayerHandler2 : MonoBehaviour
  
     private Rigidbody2D plrRigidBody;
     public bool isAlive => plrHealth > 0;
+    public bool isIframes = false;
     private int isAccelerating = 0;
     private bool isDashCooldown => dashDB > 0;
 
@@ -101,6 +103,8 @@ public class PlayerHandler2 : MonoBehaviour
         if (isAlive && isAccelerating != 0) // If Alive And Accelorating
         {
             //Increase velocity
+            //MovementParticle.enableEmission = true;
+            MovementParticle.Emit(1);
             plrRigidBody.AddForce((isAccelerating == 1 ? plrAcceleration : -plrAcceleration) * transform.up);
             plrRigidBody.linearVelocity = Vector2.ClampMagnitude(plrRigidBody.linearVelocity, plrMaxVelocity);
         }
@@ -115,11 +119,11 @@ public class PlayerHandler2 : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             plrRigidBody.AddTorque(plrRotationSpeed * Time.deltaTime);
-            // plrRigidBody.angularVelocity = Vector2.ClampMagnitude(plrRigidBody.angularVelocity, plrMaxVelocity);
+            //transform.Rotate(plrRotationSpeed * Time.deltaTime * transform.forward);
         } else if (Input.GetKey(KeyCode.D))
         {
             plrRigidBody.AddTorque(-plrRotationSpeed * Time.deltaTime);
-            // transform.Rotate(-plrRotationSpeed * Time.deltaTime * transform.forward);
+            //transform.Rotate(-plrRotationSpeed * Time.deltaTime * transform.forward);
         }
     }
 
@@ -146,5 +150,10 @@ public class PlayerHandler2 : MonoBehaviour
             // Add force to propel bullet in direction
             bullet.AddForce(bulletSpeed * transform.up, ForceMode2D.Impulse);
         }
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        if (!isIframes) plrHealth -= Damage;
     }
 }
