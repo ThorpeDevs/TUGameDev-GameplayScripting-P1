@@ -4,21 +4,50 @@ using UnityEngine.InputSystem;
 
 public class PlayerHandler2 : MonoBehaviour
 {
-    public Rigidbody2D plrRigidBody; // Rigidbody of Player Character
-    public float PlrSpeed; // General Speed To Multiply By
+    [Header("Movement Params")] 
+    [SerializeField] private float plrAcceleration = 10f;
+    [SerializeField] private float plrMaxVelocity = 10f;
+    [SerializeField] private float plrRotationSpeed = 180f;
 
-    private Vector2 InputPower; // Movement Direction
-    private float TotalSpeed; // Total Speed After DeltaTime
+    private float plrHealth = 100f;
 
-    void Update() // Fires Every Frame
-    {
-        TotalSpeed = PlrSpeed * Time.deltaTime; // Multiplies Speed by DeltaTime to fix FPS related speed issues!
+    private Rigidbody2D plrRigidBody;
+    private bool isAlive => plrHealth > 0;
+    private int isAccelerating = 0;
 
-        plrRigidBody.AddForce(InputPower * TotalSpeed); // Applies Speed and Direction to Rigidbody
+    private void Start() {
+        // Get a reference to RigidBody2D
+        plrRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    public void OnMove(InputValue Value) // Fires On Movement Input Event (W/A/S/D)
-    {
-        InputPower = Value.Get<Vector2>(); // Gets Movement Direction From Unity New Input System
+    private void Update() {
+        if (isAlive) {
+            HandleShipAcceleration();
+            HandleShipRotationSpeed();
+        }
+    }
+
+    private void FixedUpdate() {
+        if (isAlive && isAccelerating != 0)
+        {
+            //Increase velocity
+            plrRigidBody.AddForce((isAccelerating == 1 ? plrAcceleration : -plrAcceleration) * transform.up);
+            plrRigidBody.linearVelocity = Vector2.ClampMagnitude(plrRigidBody.linearVelocity, plrMaxVelocity);
+        }
+    }
+
+    private void HandleShipAcceleration(){
+        isAccelerating = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+    }
+
+    private void HandleShipRotationSpeed() {
+        if (Input.GetKey(KeyCode.A))
+        {
+            // plrRigidBody.Add
+            transform.Rotate(plrRotationSpeed * Time.deltaTime * transform.forward);
+        } else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(-plrRotationSpeed * Time.deltaTime * transform.forward);
+        }
     }
 }

@@ -186,3 +186,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   RockRigidBody: {fileID: 5651144622591306962}
+  AdditionalSpeed: 1
+  Size: 3
