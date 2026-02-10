@@ -167,11 +167,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1932824016836533817, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
+      propertyPath: start
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2223508506683329251, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
       propertyPath: m_Name
       value: PlayerTreangle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3620466568852190243, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
+      propertyPath: ScreenShaker
+      value: 
+      objectReference: {fileID: 926455699}
+    m_RemovedComponents:
+    - {fileID: 1932824016836533817, guid: bda173ef0aab1344cbe5ab31df148540, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -234,6 +243,7 @@ GameObject:
   - component: {fileID: 926455697}
   - component: {fileID: 926455696}
   - component: {fileID: 926455695}
+  - component: {fileID: 926455699}
   - component: {fileID: 926455698}
   m_Layer: 0
   m_Name: Main Camera
@@ -360,6 +370,53 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &926455699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926455694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e678472f350f943b03ee0de98f5466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShakeHandler
+  start: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.8760405
+      outSlope: -2.8760405
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23551497
+      value: 0.32264942
+      inSlope: -1.6433465
+      outSlope: -1.6433465
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99108887
+      value: 0.012371063
+      inSlope: -0.41065258
+      outSlope: -0.41065258
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0.2
 --- !u!1 &1509850640
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ public class AAAAAAAAAAAAA : MonoBehaviour
 {
     [SerializeField] private ParticleSystem DestructionParticles;
     public Rigidbody2D RockRigidBody;
-    private Scene CurrentScene; // Holds The Current Scene
 	public int AdditionalSpeed = 0; // Additional Speed Added To The Rock
 	public int Size = 3; // Size of the Rock
     public float damage = 2.5f; // was 2.5f
@@ -59,12 +58,6 @@ public class AAAAAAAAAAAAA : MonoBehaviour
             Debug.Log(damage);
             player.TakeDamage(damage);
             SplitRock(false);
-            if (!player.isAlive)
-            {
-                
-                CurrentScene = SceneManager.GetActiveScene(); // Sets Current Scene Variable to Current Scene
-                SceneManager.LoadScene(CurrentScene.name); // Loads The Currently Active Scene
-            }
         }
         else if (other.CompareTag("Bullet")) // Checks to see if bullet collided with GameObject
         {

@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerHandler2 : MonoBehaviour
 {
@@ -31,11 +32,14 @@ public class PlayerHandler2 : MonoBehaviour
  
     private Rigidbody2D plrRigidBody;
     public bool isAlive => plrHealth > 0;
+    private bool hasDied = false;
     public bool isIframes = false;
     private int isAccelerating = 0;
     private bool isDashCooldown => dashDB > 0;
 
     private float shootDB = 0;
+    
+    private Scene CurrentScene; // Holds The Current Scene
 
     private bool CantDash
     {
@@ -91,12 +95,18 @@ public class PlayerHandler2 : MonoBehaviour
 
     private void Update()
     {
-        if (!isAlive) return; // If Dead Return!
+        if (!isAlive && !hasDied)
+        {
+            Die();
+            hasDied = true; // If Dead Return!
+        }
         
         HandlePlrAcceleration(); // Accels
         HandlePlrRotationSpeed(); // Rotats
         HandleShooting(); // Pew Pews
         HandleDashDB(); // Dash DB
+        
+        
     }
 
     private void FixedUpdate() {
@@ -155,5 +165,19 @@ public class PlayerHandler2 : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         if (!isIframes) plrHealth -= Damage;
+        
+        CameraShakeHandler shakeHandler = Camera.main.GetComponent<CameraShakeHandler>();
+        shakeHandler.duration = 0.2f;
+        shakeHandler.start = true;
+    }
+
+    private void Die()
+    {
+        if (!isAlive)
+        {
+                
+            CurrentScene = SceneManager.GetActiveScene(); // Sets Current Scene Variable to Current Scene
+            SceneManager.LoadScene(CurrentScene.name); // Loads The Currently Active Scene
+        }
     }
 }
